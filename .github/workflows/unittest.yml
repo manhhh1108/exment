@@ -2,8 +2,12 @@ name: phpunit
 
 on:
   pull_request:
-    branches:
-      - master
+    paths:
+      - 'config/**'
+      - 'database/**'
+      - 'resources/**'
+      - 'src/**'
+      - 'tests/**'
 
 env:
   DOCKER_EXMENT_REPOSITORY: manhhh1108/docker-exment
