@@ -10,7 +10,7 @@ class AccessibleUserTest extends UnitTestBase
 {
     /**
      * @return void
-     */   
+     */
     public function testFuncCustomValueEdit()
     {
         $custom_table = CustomTable::getEloquent(TestDefine::TESTDATA_TABLE_NAME_EDIT);
