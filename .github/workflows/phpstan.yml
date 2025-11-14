@@ -11,7 +11,8 @@ on:
 
 env:
   DOCKER_EXMENT_REPOSITORY: manhhh1108/docker-exment
-  EXMENT_BOILERPLATE_REPOSITORY: exceedone/exment-boilerplate
+  EXMENT_BOILERPLATE_REPOSITORY: manhhh1108/exment-boilerplate
+  LARAVEL_ADMIN_REPOSITORY: manhhh1108/laravel-admin
 
 jobs:
   phpstan:

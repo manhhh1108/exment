@@ -7,7 +7,8 @@ on:
 
 env:
   DOCKER_EXMENT_REPOSITORY: manhhh1108/docker-exment
-  EXMENT_BOILERPLATE_REPOSITORY: exceedone/exment-boilerplate
+  EXMENT_BOILERPLATE_REPOSITORY: manhhh1108/exment-boilerplate
+  LARAVEL_ADMIN_REPOSITORY: manhhh1108/laravel-admin
 
 jobs:
   check-lang:
@@ -23,6 +24,11 @@ jobs:
         with:
           repository: ${{ env.EXMENT_BOILERPLATE_REPOSITORY}}
           path: ./docker-exment/exment-boilerplate
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.LARAVEL_ADMIN_REPOSITORY}}
+          path: ./docker-exment/laravel-admin
 
       - uses: actions/checkout@v4
         with:
