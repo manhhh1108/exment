@@ -21,7 +21,7 @@ use Exceedone\Exment\Enums\DatabaseDataType;
 use Exceedone\Exment\Enums\TextAlignExType;
 use Exceedone\Exment\ColumnItems\CustomColumns\AutoNumber;
 use Exceedone\Exment\Validator;
-
+ 
 abstract class CustomItem implements ItemInterface
 {
     use ItemTrait;
