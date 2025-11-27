@@ -7,7 +7,7 @@ use Exceedone\Exment\Model\CustomTable;
 use Exceedone\Exment\Tests\TestDefine;
 
 class AccessibleUserTest extends UnitTestBase
-{
+{  
     /**
      * @return void
      */  
