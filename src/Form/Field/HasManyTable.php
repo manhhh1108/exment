@@ -2,12 +2,12 @@
 
 namespace Exceedone\Exment\Form\Field;
 
-use Encore\Admin\Admin;
-use Encore\Admin\Form;
-use Encore\Admin\Form\Field;
-use Encore\Admin\Form\Field\Hidden;
-use Encore\Admin\Form\Field\Select;
-use Encore\Admin\Form\NestedForm;
+use OpenAdminCore\Admin\Admin;
+use OpenAdminCore\Admin\Form;
+use OpenAdminCore\Admin\Form\Field;
+use OpenAdminCore\Admin\Form\Field\Hidden;
+use OpenAdminCore\Admin\Form\Field\Select;
+use OpenAdminCore\Admin\Form\NestedForm;
 
 /**
  * Class HasMany.
@@ -193,7 +193,7 @@ class HasManyTable extends HasMany
         $requires[] = is_array($field->getAttributes()) && array_has($field->getAttributes(), 'required');
 
         // set label viewclass hidden
-        $field->setLabelClass(['hidden']);
+        $field->setLabelClass(['d-none']);
         $field->setElementClass(['w-100']);
         if (!($field instanceof Select)) {
             $field->attribute(['style' => 'max-width:999999px']);

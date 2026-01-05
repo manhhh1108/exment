@@ -2,7 +2,7 @@
 
 namespace Exceedone\Exment\Form\Field\Workflow;
 
-use Encore\Admin\Form\Field\Select;
+use OpenAdminCore\Admin\Form\Field\Select;
 use Exceedone\Exment\Enums\WorkflowCommentType;
 
 class Options extends Select
@@ -41,7 +41,7 @@ class Options extends Select
      *
      * @return $this
      */
-    public function setElementClass($class)
+    public function setElementClass($class): self
     {
         $classItem = collect($class)->map(function ($c) {
             return is_array($c) ? implode("_", $c) : $c;

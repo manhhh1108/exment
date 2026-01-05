@@ -2,9 +2,9 @@
 
 namespace Exceedone\Exment\Form\Field;
 
-use Encore\Admin\Admin;
-use Encore\Admin\Form\NestedForm;
-use Encore\Admin\Form\Field\HasMany as AdminHasMany;
+use OpenAdminCore\Admin\Admin;
+use OpenAdminCore\Admin\Form\NestedForm;
+use OpenAdminCore\Admin\Form\Field\HasMany as AdminHasMany;
 use Illuminate\Support\Arr;
 
 /**
@@ -132,7 +132,7 @@ EOT;
         return $script;
     }
 
-    public function getScript()
+    public function getScript(): string
     {
         list($template, $script) = $this->buildNestedForm($this->column, $this->builder)
             ->getTemplateHtmlAndScript();

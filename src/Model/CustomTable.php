@@ -25,10 +25,8 @@ use Exceedone\Exment\Services\AuthUserOrgHelper;
 use Exceedone\Exment\Services\FormHelper;
 use Exceedone\Exment\Validator\EmptyRule;
 use Exceedone\Exment\Validator\CustomValueRule;
-use Encore\Admin\Facades\Admin;
-use Exceedone\Exment\Enums\FormBlockType;
-use Exceedone\Exment\Enums\FormColumnType;
-use Exceedone\Exment\Enums\ViewType;
+use Exceedone\Exment\ColumnItems\WorkflowItem;
+use OpenAdminCore\Admin\Facades\Admin;
 use Exceedone\Exment\Validator\ExmentCustomValidator;
 use Exception;
 use Exceedone\Exment\Model\File as ExmentFile;
@@ -2000,11 +1998,11 @@ class CustomTable extends ModelBase implements Interfaces\TemplateImporterInterf
     /**
      * Set select table's field info.
      *
-     * @param \Encore\Admin\Form\Field $field
+     * @param \OpenAdminCore\Admin\Form\Field $field
      * @param array $options
-     * @return \Encore\Admin\Form\Field
+     * @return \OpenAdminCore\Admin\Form\Field
      */
-    public function setSelectTableField(\Encore\Admin\Form\Field $field, array $options = []): \Encore\Admin\Form\Field
+    public function setSelectTableField(\OpenAdminCore\Admin\Form\Field $field, array $options = []): \OpenAdminCore\Admin\Form\Field
     {
         $options = array_merge([
             'custom_value' => null, // select custom value, if called custom value's select table

@@ -2,7 +2,7 @@
 
 namespace Exceedone\Exment\Grid\Tools;
 
-use Encore\Admin\Grid\Tools\BatchAction;
+use OpenAdminCore\Admin\Grid\Tools\BatchAction;
 
 class BatchUpdate extends BatchAction
 {
@@ -61,6 +61,7 @@ class BatchUpdate extends BatchAction
         return <<<EOT
 
 $('{$this->getElementClass()}').on('click', function() {
+    event.preventDefault(); 
     var url = '{$url}/operationClick';
     Exment.CommonEvent.ShowSwal(url, {
         title: "$label",

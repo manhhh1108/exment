@@ -2,9 +2,8 @@
 
 namespace Exceedone\Exment\DataItems\Grid;
 
-use Encore\Admin\Grid;
-use Encore\Admin\Form;
-use Exceedone\Exment\ColumnItems;
+use OpenAdminCore\Admin\Grid;
+use OpenAdminCore\Admin\Form;
 use Exceedone\Exment\Form\Tools;
 use Exceedone\Exment\Model\Define;
 use Exceedone\Exment\Model\CustomRelation;
@@ -19,6 +18,7 @@ use Exceedone\Exment\Enums\SystemColumn;
 use Exceedone\Exment\Enums\SummaryCondition;
 use Exceedone\Exment\Enums\GroupCondition;
 use Illuminate\Support\Collection;
+use Exceedone\Exment\ColumnItems;
 
 class SummaryGrid extends GridBase
 {
@@ -92,7 +92,7 @@ class SummaryGrid extends GridBase
             $edit_flg = $this->custom_table->enableEdit(true) === true;
             if ($edit_flg && $this->custom_table->enableExport() === true) {
                 $button = new Tools\ExportImportButton(admin_urls('data', $this->custom_table->table_name), $grid, false, true, false);
-                /** @phpstan-ignore-next-line append expects Encore\Admin\Grid\Tools\AbstractTool|string, Exceedone\Exment\Form\Tools\ExportImportButton given */
+                /** @phpstan-ignore-next-line append expects OpenAdminCore\Admin\Grid\Tools\AbstractTool|string, Exceedone\Exment\Form\Tools\ExportImportButton given */
                 $tools->append($button->setCustomTable($this->custom_table));
             }
 
@@ -102,11 +102,11 @@ class SummaryGrid extends GridBase
             }
 
             if ($this->custom_table->enableTableMenuButton()) {
-                /** @phpstan-ignore-next-line expects Encore\Admin\Grid\Tools\AbstractTool|string, Exceedone\Exment\Form\Tools\CustomTableMenuButton given */
+                /** @phpstan-ignore-next-line expects OpenAdminCore\Admin\Grid\Tools\AbstractTool|string, Exceedone\Exment\Form\Tools\CustomTableMenuButton given */
                 $tools->append(new Tools\CustomTableMenuButton('data', $this->custom_table));
             }
             if ($this->custom_table->enableViewMenuButton()) {
-                /** @phpstan-ignore-next-line expects Encore\Admin\Grid\Tools\AbstractTool|string, Exceedone\Exment\Form\Tools\CustomViewMenuButton given */
+                /** @phpstan-ignore-next-line expects OpenAdminCore\Admin\Grid\Tools\AbstractTool|string, Exceedone\Exment\Form\Tools\CustomViewMenuButton given */
                 $tools->append(new Tools\CustomViewMenuButton($this->custom_table, $this->custom_view));
             }
         });
@@ -305,7 +305,7 @@ class SummaryGrid extends GridBase
 
             $form->select('view_group_condition', exmtrans("custom_view.view_group_condition"))
                 // ignore HasOptionRule.
-                ->removeRules(\Encore\Admin\Validator\HasOptionRule::class)
+                ->removeRules(\OpenAdminCore\Admin\Validator\HasOptionRule::class)
                 ->options(function ($val, $form) {
                     if (is_null($data = $form->data())) {
                         return [];
@@ -360,7 +360,7 @@ class SummaryGrid extends GridBase
                     return [];
                 })
                 // ignore HasOptionRule.
-                ->removeRules(\Encore\Admin\Validator\HasOptionRule::class)
+                ->removeRules(\OpenAdminCore\Admin\Validator\HasOptionRule::class)
                 ->required()->rules('summaryCondition');
             $form->text('view_column_name', exmtrans("custom_view.view_column_name"))->icon(null);
             $form->select('sort_order', exmtrans("custom_view.sort_order"))

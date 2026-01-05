@@ -2,13 +2,13 @@
 
 namespace Exceedone\Exment\Controllers;
 
-use Encore\Admin\Form;
-use Encore\Admin\Grid;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Layout\Content;
-use Encore\Admin\Layout\Row;
-use Encore\Admin\Grid\Linker;
-use Exceedone\Exment\Model\CustomRelation;
+use OpenAdminCore\Admin\Form;
+use OpenAdminCore\Admin\Grid;
+use OpenAdminCore\Admin\Facades\Admin;
+use OpenAdminCore\Admin\Layout\Content;
+use OpenAdminCore\Admin\Layout\Row;
+use OpenAdminCore\Admin\Grid\Linker;
+use Exceedone\Exment\Model\Workflow;
 use Exceedone\Exment\Validator\ExmentCustomValidator;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,7 +61,7 @@ class CustomTableController extends AdminControllerBase
     {
         $content = $this->AdminContent($content);
 
-        /** @phpstan-ignore-next-line constructor expects string, Encore\Admin\Grid given*/
+        /** @phpstan-ignore-next-line constructor expects string, OpenAdminCore\Admin\Grid given*/
         $row = new Row($this->grid());
         $row->class(['block_custom_table']);
 
@@ -74,7 +74,7 @@ class CustomTableController extends AdminControllerBase
      * @param string|int|null $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function qrcodeActivate(Request $request, $id)
+    public function qrcodeActivate(Request $request, $id)
     {
         return $this->toggleActivateQr($request, $id, true);
     }
@@ -86,7 +86,7 @@ class CustomTableController extends AdminControllerBase
      * @param string|int|null $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function qrcodeDeactivate(Request $request, $id)
+    public function qrcodeDeactivate(Request $request, $id)
     {
         return $this->toggleActivateQr($request, $id, false);
     }
@@ -117,7 +117,7 @@ class CustomTableController extends AdminControllerBase
      * @param string|int|null $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function jancodeActivate(Request $request, $id)
+    public function jancodeActivate(Request $request, $id)
     {
         return $this->toggleActivateJancode($request, $id, true);
     }
@@ -129,7 +129,7 @@ class CustomTableController extends AdminControllerBase
      * @param string|int|null $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function jancodeDeactivate(Request $request, $id)
+    public function jancodeDeactivate(Request $request, $id)
     {
         return $this->toggleActivateJancode($request, $id, false);
     }
@@ -167,7 +167,7 @@ class CustomTableController extends AdminControllerBase
 
         $grid->tools(function (Grid\Tools $tools) {
             $tools->disableBatchActions();
-            /** @phpstan-ignore-next-line append() expects Encore\Admin\Grid\Tools\AbstractTool|string, Exceedone\Exment\Form\Tools\CustomTableMenuAjaxButton given */
+            /** @phpstan-ignore-next-line append() expects OpenAdminCore\Admin\Grid\Tools\AbstractTool|string, Exceedone\Exment\Form\Tools\CustomTableMenuAjaxButton given */
             $tools->append(new Tools\CustomTableMenuAjaxButton());
         });
 
@@ -217,7 +217,7 @@ class CustomTableController extends AdminControllerBase
                         'icon' => 'fa-copy',
                         'modal_title' => exmtrans('common.copy_item', exmtrans('custom_table.table')),
                         'attributes' => [
-                            'data-toggle' => "tooltip",
+                            'data-bs-toggle' => "tooltip",
                         ],
                     ]
                 ))->render());
@@ -450,9 +450,9 @@ SCRIPT;
         Admin::script($script);
 
         return <<<HTML
-<div class="btn-group pull-right" style="margin-right: 5px">
-    <a href="javascript:void(0);" class="btn btn-sm btn-danger {$class}-delete" title="{$trans['delete']}">
-        <i class="fa fa-trash"></i><span class="hidden-xs">  {$trans['delete']}</span>
+<div class="btn-group float-end" style="margin-right: 5px">
+    <a href="javascript:void(0);" class="btn btn-sm btn-danger d-flex align-items-center p-2 {$class}-delete" title="{$trans['delete']}">
+        <i class="fa fa-trash"></i><span class="d-none d-md-inline">  {$trans['delete']}</span>
     </a>
 </div>
 HTML;

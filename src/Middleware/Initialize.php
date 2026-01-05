@@ -4,7 +4,7 @@ namespace Exceedone\Exment\Middleware;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Encore\Admin\Grid\Filter;
+use OpenAdminCore\Admin\Grid\Filter;
 use Exceedone\Exment\Enums\SystemTableName;
 use Exceedone\Exment\Model;
 use Exceedone\Exment\Model\System;
@@ -16,10 +16,10 @@ use Exceedone\Exment\ColumnItems\CustomItem;
 use Exceedone\Exment\ColumnItems\CustomColumns;
 use Exceedone\Exment\Services\Auth2factor\Auth2factorService;
 use Exceedone\Exment\Services\PartialCrudService;
-use Encore\Admin\Form;
-use Encore\Admin\Widgets\Form as WidgetForm;
-use Encore\Admin\Grid;
-use Encore\Admin\Show;
+use OpenAdminCore\Admin\Form;
+use OpenAdminCore\Admin\Widgets\Form as WidgetForm;
+use OpenAdminCore\Admin\Grid;
+use OpenAdminCore\Admin\Show;
 use Html;
 use PDO;
 
@@ -331,7 +331,7 @@ class Initialize
             // Logo
             $val = System::site_logo();
             if (!is_nullorempty($val)) {
-                Config::set('admin.logo', Html::image($val, 'header logo'));
+                Config::set('admin.logo', html_image($val, 'header logo'));
             } else {
                 $val = System::site_name();
                 if (!is_nullorempty($val)) {
@@ -342,7 +342,7 @@ class Initialize
             // Logo(Short)
             $val = System::site_logo_mini();
             if (!is_nullorempty($val)) {
-                Config::set('admin.logo-mini', Html::image($val, 'header logo mini'));
+                Config::set('admin.logo-mini', html_image($val, 'header logo mini'));
             } else {
                 $val = System::site_name_short();
                 if (!is_nullorempty($val)) {

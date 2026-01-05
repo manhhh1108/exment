@@ -1372,14 +1372,31 @@ if (!function_exists('hasTable')) {
      * @param string $table_name *only table name
      * @return bool
      */
-    function hasTable($table_name)
+    function hasTable(string $table_name): bool
     {
         $tables = System::cache(Define::SYSTEM_KEY_SESSION_ALL_DATABASE_TABLE_NAMES, function () {
             // get all table names
-            return DB::connection()->getDoctrineSchemaManager()->listTableNames();
+            try {
+                $config = DB::getConfig();
+
+                $conn = \Doctrine\DBAL\DriverManager::getConnection([
+                    'dbname'   => $config['database'],
+                    'user'     => $config['username'],
+                    'password' => $config['password'],
+                    'host'     => $config['host'],
+                    'port'     => $config['port'],
+                    'driver'   => 'pdo_mysql',
+                    'charset'  => $config['charset'] ?? 'utf8mb4',
+                ]);
+
+                return $conn->createSchemaManager()->listTableNames();
+            } catch (\Throwable $e) {
+                \Log::error('Error fetching table names: ' . $e->getMessage());
+                return [];
+            }
         }, true);
 
-        return in_array($table_name, $tables);
+        return in_array($table_name, $tables, true);
     }
 }
 
@@ -1847,5 +1864,17 @@ if (!function_exists('admin_exclusion_path')) {
             }
             return $validName;
         }
+    }
+}
+
+if (!function_exists('html_image')) {
+    function html_image($path, $alt = '', $attributes = [])
+    {
+        $src = asset($path);
+        $attrString = '';
+        foreach ($attributes as $key => $value) {
+            $attrString .= " {$key}=\"{$value}\"";
+        }
+        return "<img src=\"{$src}\" alt=\"{$alt}\"{$attrString}>";
     }
 }

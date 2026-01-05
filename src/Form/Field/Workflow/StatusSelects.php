@@ -2,7 +2,7 @@
 
 namespace Exceedone\Exment\Form\Field\Workflow;
 
-use Encore\Admin\Form\Field\Select;
+use OpenAdminCore\Admin\Form\Field\Select;
 
 class StatusSelects extends Select
 {
@@ -38,7 +38,7 @@ class StatusSelects extends Select
      *
      * @return $this
      */
-    public function setElementClass($class)
+    public function setElementClass($class): self
     {
         $classItem = collect($class)->map(function ($c) {
             return is_array($c) ? implode("_", $c) : $c;

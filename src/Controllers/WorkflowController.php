@@ -2,13 +2,13 @@
 
 namespace Exceedone\Exment\Controllers;
 
-use Encore\Admin\Form;
-use Encore\Admin\Widgets\Form as WidgetForm;
-use Encore\Admin\Widgets\Box;
+use OpenAdminCore\Admin\Form;
+use OpenAdminCore\Admin\Widgets\Form as WidgetForm;
+use OpenAdminCore\Admin\Widgets\Box;
 use Exceedone\Exment\Form\Widgets\ModalForm;
-use Encore\Admin\Grid;
-use Encore\Admin\Grid\Linker;
-use Encore\Admin\Layout\Content;
+use OpenAdminCore\Admin\Grid;
+use OpenAdminCore\Admin\Grid\Linker;
+use OpenAdminCore\Admin\Layout\Content;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Exceedone\Exment\Model\Define;
@@ -100,7 +100,7 @@ class WorkflowController extends AdminControllerBase
                         'icon' => 'fa-trash',
                         'modal_title' => trans('admin.delete'),
                         'attributes' => [
-                            'data-toggle' => "tooltip",
+                            'data-bs-toggle' => "tooltip",
                         ],
                     ]
                 ))->render());
@@ -114,7 +114,7 @@ class WorkflowController extends AdminControllerBase
                         'icon' => 'fa-check-square',
                         'modal_title' => exmtrans('workflow.setting_complete'),
                         'attributes' => [
-                            'data-toggle' => "tooltip",
+                            'data-bs-toggle' => "tooltip",
                         ],
                     ]
                 ))->render());
@@ -585,7 +585,7 @@ class WorkflowController extends AdminControllerBase
      *
      * @return Content
      */
-    protected function beginningForm()
+    public function beginningForm()
     {
         $content = new Content();
         $this->AdminContent($content);
@@ -673,7 +673,7 @@ class WorkflowController extends AdminControllerBase
         $form->html(view('exment::workflow.beginning', [
             'items' => $results
         ])->render());
-        /** @phpstan-ignore-next-line constructor expects string, Encore\Admin\Widgets\Form given */
+        /** @phpstan-ignore-next-line constructor expects string, OpenAdminCore\Admin\Widgets\Form given */
         $box = new Box(exmtrans('workflow.beginning'), $form);
         $box->tools(view('exment::tools.button', [
             'href' => admin_url('workflow'),
@@ -692,7 +692,7 @@ class WorkflowController extends AdminControllerBase
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function beginningPost(Request $request)
+    public function beginningPost(Request $request)
     {
         $workflow_tables = $request->get('workflow_tables');
 
@@ -803,7 +803,7 @@ class WorkflowController extends AdminControllerBase
                     'button_class' => 'btn-danger',
                     'modal_title' => trans('admin.delete'),
                     'attributes' => [
-                        'data-toggle' => "tooltip",
+                        'data-bs-toggle' => "tooltip",
                     ]
                 ]
             ))->render());
